@@ -18,18 +18,22 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
 
   // TODO - filter by tags
-  const selectedTags = [filters.tags];
+  if(filters.tags.length) {
+    const selectedTags = filters.tags;
+    let filteredTags = [];
 
-  selectedTags.forEach((tag) => {
-    trips.forEach((trip) => {
-      if (trip.tags.includes(tag)) {
-        if(!output.includes(trip)) {
-          output = [...output, trip];
+    selectedTags.forEach((tag) => {
+      trips.forEach((trip) => {
+        if (trip.tags.includes(tag)) {
+          if(!filteredTags.includes(trip)) {
+            filteredTags = [...filteredTags, trip];
+          }
         }
-      }
+      });
     });
-  });
 
+    output = filteredTags;
+  }
 
   // TODO - sort by cost descending (most expensive goes first)
 
