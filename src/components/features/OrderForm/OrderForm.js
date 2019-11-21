@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import styles from './OrderForm.scss';
 import { Row, Col } from 'react-flexbox-grid';
 import OrderSummary from '../OrderSummary/OrderSummary';
 import pricing from '../../../data/pricing';
@@ -26,7 +25,6 @@ OrderForm.propTypes = {
   tripCost: PropTypes.string,
   options: PropTypes.object,
   setOrderOption: PropTypes.func,
-  currentValue: PropTypes.node,
 };
 
 export default OrderForm;
