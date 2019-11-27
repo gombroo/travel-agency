@@ -93,7 +93,6 @@ for(let type in optionTypes){
     /* type-specific tests */
     switch (type) {
       case 'dropdown': {
-
         /* tests for dropdown */
         it('contains select and options', () => {
           const select = renderedSubcomponent.find('select');
@@ -115,10 +114,37 @@ for(let type in optionTypes){
         });
         break;
       }
-      case 'checkboxes': {
-        /* tests for checkboxes */
+
+      case 'number': {
+        /* tests for number input */
+        it('contains input', () => {
+          const input = renderedSubcomponent.find('input');
+          expect(input.length).toBe(1);
+        });
+
+        it('should setOrderOption on change', () => {
+          renderedSubcomponent.find('input').simulate('change', {currentTarget: {value: testValueNumber}});
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValueNumber });
+        });
         break;
       }
+
+      case 'text': {
+        /* tests for text input*/
+        it('contains input', () => {
+          const input = renderedSubcomponent.find('input');
+          expect(input.length).toBe(1);
+        });
+
+        it('should setOrderOption on change', () => {
+          renderedSubcomponent.find('input').simulate('change', {currentTarget: {value: testValue}});
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
+        });
+        break;
+      }
+
     }
   });
 }
