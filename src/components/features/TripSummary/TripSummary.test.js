@@ -5,7 +5,7 @@ import TripSummary from './TripSummary';
 describe('Component TripSummary', () => {
   it('<img> has valid src and alt', () => {
     const expectedSrc = 'image';
-    const expectedAlt = 'name';
+    const expectedAlt = 'source';
     const component = shallow(<TripSummary src={expectedSrc} alt={expectedAlt}/>);
 
     expect(component.find('img').prop('src')).toEqual(expectedSrc);
@@ -13,9 +13,9 @@ describe('Component TripSummary', () => {
   });
 
   it('should render correct prop name, cost and days', () => {
-    const expectedName = 'name';
-    const expectedCost = 'cost';
-    const expectedDuration = 'days';
+    const expectedName = 'trip name';
+    const expectedCost = 'trip cost';
+    const expectedDuration = 'trip days';
     const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDuration}/>);
 
     expect(component.find('.title').prop('name')).toEqual(expectedName);
@@ -33,4 +33,6 @@ describe('Component TripSummary', () => {
 
     expect(component.find('.link').prop('to')).toEqual(`/trip/${expectedId}`);
   });
+
+  // it should render correct tags array
 });
