@@ -38,6 +38,8 @@ for(let type in optionTypes){
 
     /* test setup */
     let component;
+    let subcomponent;
+    let renderedSubcomponent;
 
     beforeEach(() => {
       component = shallow(
@@ -45,6 +47,10 @@ for(let type in optionTypes){
           type={type}
         />
       );
+      subcomponent = component.find(optionTypes[type]); //
+      renderedSubcomponent = component.dive();
+      console.log(subcomponent.debug());
+      console.log(renderedSubcomponent.debug());
     });
 
     /* common tests */
