@@ -80,8 +80,8 @@ for(let type in optionTypes){
           {...mockPropsForType[type]}
         />
       );
-      subcomponent = component.find(optionTypes[type]); //
-      renderedSubcomponent = component.dive();
+      subcomponent = component.find(optionTypes[type]);
+      renderedSubcomponent = subcomponent.dive();
     });
 
     /* common tests */
@@ -93,6 +93,7 @@ for(let type in optionTypes){
     /* type-specific tests */
     switch (type) {
       case 'dropdown': {
+
         /* tests for dropdown */
         it('contains select and options', () => {
           const select = renderedSubcomponent.find('select');
@@ -106,6 +107,7 @@ for(let type in optionTypes){
           expect(options.at(0).prop('value')).toBe(mockProps.values[0].id);
           expect(options.at(1).prop('value')).toBe(mockProps.values[1].id);
         });
+
         it('should setOrderOption on change', () => {
           renderedSubcomponent.find('select').simulate('change', {currentTarget: {value: testValue}});
           expect(mockSetOrderOption).toBeCalledTimes(1);

@@ -19,8 +19,8 @@ describe('Component TripSummary', () => {
     const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDuration}/>);
 
     expect(component.find('.title').prop('name')).toEqual(expectedName);
-    expect(component.find('.details').prop('cost')).toEqual(expectedCost);
-    expect(component.find('.details').prop('days')).toEqual(expectedDuration);
+    expect(component.find('.details span').prop('cost')).toEqual(expectedCost);
+    expect(component.find('.details span').prop('days')).toEqual(expectedDuration);
   });
 
   it('should throw error without required props', () =>{
@@ -34,5 +34,12 @@ describe('Component TripSummary', () => {
     expect(component.find('.link').prop('to')).toEqual(`/trip/${expectedId}`);
   });
 
-  // it should render correct tags array
+  it('should render correct tags array', () => {
+    const expectedTags = ['tag1', 'tag2', 'tag3'];
+    const component = shallow(<TripSummary tags={expectedTags} />);
+
+    expect(component.find('.tags span').at(0).text()).toEqual(expectedTags[0]);
+    expect(component.find('.tags span').at(1).text()).toEqual(expectedTags[1]);
+    expect(component.find('.tags span').at(2).text()).toEqual(expectedTags[2]);
+  });
 });
