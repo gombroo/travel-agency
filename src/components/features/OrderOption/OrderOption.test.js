@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import OrderOption from './OrderOption';
-import { it } from 'date-fns/locale';
 
 describe ('Component OrderOption', () => {
   it('should render without crashing', () => {
@@ -69,11 +68,14 @@ for(let type in optionTypes){
     let component;
     let subcomponent;
     let renderedSubcomponent;
+    let mockSetOrderOption;
 
     beforeEach(() => {
+      mockSetOrderOption = jest.fn();
       component = shallow(
         <OrderOption
           type={type}
+          setOrderOption={mockSetOrderOption}
           {...mockProps}
           {...mockPropsForType[type]}
         />
@@ -104,10 +106,15 @@ for(let type in optionTypes){
           expect(options.at(0).prop('value')).toBe(mockProps.values[0].id);
           expect(options.at(1).prop('value')).toBe(mockProps.values[1].id);
         });
+        it('should setOrderOption on change', () => {
+          renderedSubcomponent.find('select').simulate('change', {currentTarget: {value: testValue}});
+          expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: testValue });
+        });
         break;
       }
       case 'checkboxes': {
-        /* tests for checkboxex */
+        /* tests for checkboxes */
         break;
       }
     }
