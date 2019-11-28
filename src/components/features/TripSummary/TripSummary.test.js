@@ -13,9 +13,9 @@ describe('Component TripSummary', () => {
   });
 
   it('should render correct prop name, cost and days', () => {
-    const expectedName = 'trip name';
-    const expectedCost = 'trip cost';
-    const expectedDuration = 'trip days';
+    const expectedName = 'name';
+    const expectedCost = 'cost';
+    const expectedDuration = 'days';
     const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDuration}/>);
 
     expect(component.find('.title').prop('name')).toEqual(expectedName);
