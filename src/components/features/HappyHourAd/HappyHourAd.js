@@ -5,6 +5,14 @@ import PropTypes from 'prop-types';
 class HappyHourAd extends React.Component {
   static propTypes = {
     title: PropTypes.node,
+  };
+
+  constructor() {
+    super();
+    setInterval(() => {
+      // run this.forceUpdate() every second
+      this.forceUpdate();
+    }, 1000);
   }
 
   getCountdownTime(){
