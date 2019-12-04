@@ -17,6 +17,11 @@ class HappyHourAd extends React.Component {
     promoDescription: PropTypes.node,
   };
 
+  static defaultProps = {
+    title: 'Happy Hour',
+    promoDescription: 'Its your time! Take advantage of Happy Hour! All offers 20% off!',
+  }
+
   getCountdownTime(){
     const currentTime = new Date();
     const nextNoon = new Date(Date.UTC(currentTime.getUTCFullYear(), currentTime.getUTCMonth(), currentTime.getUTCDate(), 12, 0, 0, 0));

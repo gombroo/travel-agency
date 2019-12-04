@@ -125,9 +125,14 @@ for(let type in optionTypes){
         });
 
         it('should run setOrderOption function on change', () => {
-          renderedSubcomponent.find('value').toEqual(testValue).simulate('change', {currentTarget: {checked:true}});
+          const check = renderedSubcomponent
+            .find('input')
+            .at(1)
+            .simulate('change', {currentTarget: { checked:true }});
+          expect(check.prop('value')).toEqual(testValue);
           expect(mockSetOrderOption).toBeCalledTimes(1);
-          expect(mockSetOrderOption).toBeCalledWith({ [mockProps.id]: [mockProps.currentValue.testValue] });
+          expect(mockSetOrderOption).toBeCalledWith({
+            [mockProps.id]: [mockProps.currentValue, testValue] });
         });
         break;
       }
@@ -172,7 +177,8 @@ for(let type in optionTypes){
         it('should run setOrderOption function on change', () => {
           renderedSubcomponent.find(DatePicker).simulate('change', testValue);
           expect(mockSetOrderOption).toBeCalledTimes(1);
-          expect(mockSetOrderOption).toBeCalledWith({[mockProps.id]: testValue});
+          expect(mockSetOrderOption).toBeCalledWith({
+            [mockProps.id]: testValue});
         });
         break;
       }
@@ -180,12 +186,12 @@ for(let type in optionTypes){
       case 'icons': {
         /* tests for icons */
         it('contains div with icon class', () => {
-          const icon = renderedSubcomponent.find('.icon .icon');
-          expect(icon.length).toBe(1);
+          const icon = renderedSubcomponent.find('Icon');
+          expect(icon.length).toBe(3);
         });
 
         it('should run setOrderOption function on click', () => {
-          renderedSubcomponent.find('.icon').at(1).simulate('click');
+          renderedSubcomponent.find('Icon').at(1).simulate('click');
           expect(mockSetOrderOption).toBeCalledTimes(1);
         });
         break;
