@@ -11,6 +11,7 @@ import DetailsImage from '../../common/DetailsImage/DetailsImage';
 import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
 import OrderForm from '../../features/OrderForm/OrderFormContainer';
+import { promoPrice } from '../../../utils/promoPrice';
 
 import styles from './Trip.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
@@ -34,7 +35,8 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
               </div>
               <List variant='light'>
                 <ListItem title={`<strong>Duration:</strong> ${days} days`} icon='calendar-alt' />
-                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />
+                <ListItem title={`<strong>Standard price:</strong> ${cost}`} icon='money-bill-wave' />
+                <ListItem title={`<strong>Promo price:</strong> ${promoPrice(cost, 20)}`} icon='money-bill-wave' />
               </List>
             </Col>
           </Row>
@@ -43,6 +45,10 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
       <Grid>
         <Row>
           <Col xs={12}>
+            <div className={styles.promo}>
+              <h2>{`Promo price: ${promoPrice(cost,20)}`}</h2>
+              <h4>{`Standard price: ${cost}`}</h4>
+            </div>
             <PageTitle text='Trip details' />
             {HTMLParser(description)}
           </Col>

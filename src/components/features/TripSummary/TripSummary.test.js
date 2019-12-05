@@ -11,15 +11,17 @@ describe('Component TripSummary', () => {
     expect(component.find('img').prop('alt')).toEqual(expectedAlt);
   });
 
-  it('should render correct prop name, cost and days', () => {
+  it('should render correct prop name, cost, promo price and days', () => {
     const expectedName = 'somename';
     const expectedCost = '1000';
+    const expectedPromoCost = '20';
     const expectedDuration = '14';
     const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDuration}/>);
     //expect(component.find('.title').text('')).toEqual(expectedName); // OK
     expect(component.find('.title').text('somename')).toEqual(expectedName);
     expect(component.find('.details span').at(0).text()).toEqual(`${expectedDuration} days`);
-    expect(component.find('.details span').at(1).text()).toEqual(`from ${expectedCost}`);
+    expect(component.find('.details span').at(1).text()).toEqual(`Price from: ${expectedPromoCost}`);
+    expect(component.find('.details span').at(2).text()).toEqual(`Standard price: ${expectedCost}`);
   });
 
   /* it('should throw error without required props', () =>{
