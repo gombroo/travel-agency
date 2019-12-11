@@ -19,8 +19,8 @@ describe('utils', () => {
   });
 
   describe('promoPrice', () => {
-    it('should return correct price if arg is proper', () => {
-      expect(promoPrice(50, 20)).toBe(40);
+    it('should return correct price format', () => {
+      expect(promoPrice('$12,123321.90')).toBe(12123321.90);
     });
   });
 });
