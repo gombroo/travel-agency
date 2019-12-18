@@ -15,7 +15,7 @@ describe('Component TripSummary', () => {
     const expectedName = 'somename';
     const expectedCost = '1000';
     const expectedPromoCost = '800';
-    const expectedDuration = '14';
+    const expectedDuration = 14;
     const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDuration}/>);
     //expect(component.find('.title').text('')).toEqual(expectedName); // OK
     expect(component.find('.title').text('somename')).toEqual(expectedName);

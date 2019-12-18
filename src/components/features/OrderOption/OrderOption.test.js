@@ -173,26 +173,20 @@ for(let type in optionTypes){
           const datepicker = renderedSubcomponent.find(DatePicker);
           expect(datepicker).toBeTruthy();
         });
-
-        it('should run setOrderOption function on change', () => {
-          renderedSubcomponent.find(DatePicker).simulate('change', testValue);
-          expect(mockSetOrderOption).toBeCalledTimes(1);
-          expect(mockSetOrderOption).toBeCalledWith({
-            [mockProps.id]: testValue});
-        });
         break;
       }
 
-      case 'icons': {
+      case 'icon': {
         /* tests for icons */
-        it('contains div with icon class', () => {
-          const icon = renderedSubcomponent.find('Icon');
-          expect(icon.length).toBe(3);
+        it('contains icon', () => {
+          const icon = renderedSubcomponent.find('.icon .icon');
+          expect(icon).toHaveLength(3);
         });
 
-        it('should run setOrderOption function on click', () => {
-          renderedSubcomponent.find('Icon').at(1).simulate('click');
+        it('should run setOrderOption function on change', () => {
+          renderedSubcomponent.find('.icon .icon').at(2).simulate('click');
           expect(mockSetOrderOption).toBeCalledTimes(1);
+          expect(mockSetOrderOption).toBeCalledWith({[mockProps.id]: testValue});
         });
         break;
       }
